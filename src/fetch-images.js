@@ -11,4 +11,3 @@ export default async function fetchImages(name, page, perPage) {
     console.log(error);
   }
 }
-console.log(fetchImages('cat', 1));

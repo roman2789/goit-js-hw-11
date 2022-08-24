@@ -81,11 +81,6 @@ async function onSubmitSearchForm(e) {
         Notiflix.Notify.success(`Hooray! We found ${name.totalHits} images.`);
         renderImageCard(name);
         new SimpleLightbox('.gallery a');
-        // refs.closeBtn.style.display = 'block';
-        // refs.closeBtn.addEventListener('click', () => {
-        //   refs.gallery.innerHTML = '';
-        //   refs.closeBtn.style.display = 'none';
-        // });
 
         if (page < totalPages) {
           refs.loadMoreBtn.style.display = 'block';
