@@ -27,7 +27,8 @@ function renderImageCard(name) {
         comments,
         downloads,
       }) =>
-        `<a class="gallery-item" href="${largeImageURL}">
+        `<div class="photo-card">
+        <a class="gallery-item" href="${largeImageURL}">
           <img
             class="gallery__image"
             src="${webformatURL}"
@@ -48,6 +49,7 @@ function renderImageCard(name) {
             <b>Downloads: ${downloads}</b>
           </p>
         </div>
+      </div>
       </div>`
     )
     .join('');
@@ -79,11 +81,11 @@ async function onSubmitSearchForm(e) {
         Notiflix.Notify.success(`Hooray! We found ${name.totalHits} images.`);
         renderImageCard(name);
         new SimpleLightbox('.gallery a');
-        refs.closeBtn.style.display = 'block';
-        refs.closeBtn.addEventListener('click', () => {
-          refs.gallery.innerHTML = '';
-          refs.closeBtn.style.display = 'none';
-        });
+        // refs.closeBtn.style.display = 'block';
+        // refs.closeBtn.addEventListener('click', () => {
+        //   refs.gallery.innerHTML = '';
+        //   refs.closeBtn.style.display = 'none';
+        // });
 
         if (page < totalPages) {
           refs.loadMoreBtn.style.display = 'block';
@@ -110,7 +112,7 @@ refs.loadMoreBtn.addEventListener(
     page += 1;
     fetchImages(name, page, perPage).then(name => {
       let totalPages = name.totalHits / perPage;
-      renderGallery(name);
+      renderImageCard(name);
       new SimpleLightbox('.gallery a');
       if (page >= totalPages) {
         refs.loadMoreBtn.style.display = 'none';
